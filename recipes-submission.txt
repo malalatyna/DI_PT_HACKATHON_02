@@ -1,0 +1,60 @@
+<?php
+// Retrieve form data
+$name = $_POST['name'];
+$title = $_POST['title'];
+$ingredients = $_POST['ingredients'];
+$contactNumber = $_POST['contact_number'];
+$description = $_POST['description'];
+
+// Validate and sanitize the form inputs (you can add your own validation logic here)
+
+// Establish a connection to the PostgreSQL database
+$host = 'localhost';
+$dbname = 'your_database_name';
+$user = 'your_username';
+$password = 'your_password';
+
+try {
+    $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo 'Connected to the database successfully.' . PHP_EOL;
+} catch (PDOException $e) {
+    die('Connection failed: ' . $e->getMessage());
+}
+
+// Insert the form data into the "recipes" table
+$insertQuery = "INSERT INTO recipes (name, title, ingredients, contact_number, description) 
+                VALUES (?, ?, ?, ?, ?)";
+
+$stmt = $conn->prepare($insertQuery);
+$stmt->execute([$name, $title, $ingredients, $contactNumber, $description]);
+
+if ($stmt->rowCount() > 0) {
+    echo 'Recipe added successfully.' . PHP_EOL;
+} else {
+    echo 'Error: Failed to add the recipe.' . PHP_EOL;
+}
+
+// Retrieve recipes from the "recipes" table
+$selectQuery = "SELECT * FROM recipes";
+$result = $conn->query($selectQuery);
+
+// Display the recipes on the page
+if ($result->rowCount() > 0) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        // Display recipe details
+        echo 'Recipe ID: ' . $row['id'] . '<br>';
+        echo 'Name: ' . $row['name'] . '<br>';
+        echo 'Title: ' . $row['title'] . '<br>';
+        echo 'Ingredients: ' . $row['ingredients'] . '<br>';
+        echo 'Contact Number: ' . $row['contact_number'] . '<br>';
+        echo 'Description: ' . $row['description'] . '<br>';
+        echo '<br>';
+    }
+} else {
+    echo 'No recipes found.' . PHP_EOL;
+}
+
+// Close the database connection
+$conn = null;
+?>

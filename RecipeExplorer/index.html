@@ -11,19 +11,24 @@
   
   <nav>
     <div class="logo"><h1>RecipeExplorer</h1></div>
-   
     <div class="openMenu"><i class="fa fa-bars"></i></div>
     <ul class="mainMenu">
-        <li><a href="#">Add Recipes</a></li>
-        <li><a href="#">Favorites</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#" id="addRecipesLink">Add Recipes</a></li>
+        <li><a href="#">My Favorites</a></li>
+     
         <div class="closeMenu"><i class="fa fa-times"></i></div>
         <span class="icons">
+          <a href="https://www.facebook.com/" target="_blank">
             <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank">
             <i class="fab fa-instagram"></i>
-            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.github.com/" target="_blank">
             <i class="fab fa-github"></i>
+          </a>
         </span>
+        
     </ul>
 </nav>
 
@@ -54,9 +59,51 @@
       </div>
     </div>
   </div>
+<!-- Add recipe -->
+  <div id="container"></div>
+
+<div class="form-content">
+    <h2>Please add your recipe</h2>
+    <p>Feel free to fill the form</p>
+        <div class="row">
+            <div class="column">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Your name here">
+            </div>
+            <div class="column">
+                <label for="title">Title of your recipe</label>
+                <input type="text" id="title" placeholder="Title here">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label for="">Ingredients</label>
+                <input type="text" id="ingredients" placeholder="Ingredients here">
+            </div>
+            <div class="column">
+                <label for="contact">Contact Number</label>
+                <input type="tel" id="contact" placeholder="Your phone number here">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label for="Describe">Descriptions</label>
+                <textarea id="description" placeholder="Describe your recipe" rows="3"></textarea>
+            </div>
+        </div>
+        <button type = "button" class = "btn recipe-close-btn" id = "form-close-btn">
+          <i class = "fas fa-times"></i>
+        </button>
+        <button id="add-recipe-button">Upload Recipe</button>
+        <div id="form-data"></div>
+</div>
+ 
 
 
+
+</div>
   <script src = "app.js"></script>
   <script src = "script.js"></script>
+  <!-- <script src="add.js"></script> -->
 </body>
 </html>
