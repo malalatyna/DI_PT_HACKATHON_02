@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find Meal For Your Ingredients</title>
+  <title>Find recipe For Your Ingredients</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
   <link rel = "stylesheet" href = "style.css">
 </head>
@@ -43,24 +43,23 @@
           </button>
         </div>
       </div>
-
-        <div class = "meal-result">
-        <div id= "meal">
-        </div>
+      <div id="meals" class="meals-container"></div>
+      <div class = "meal-result">
+      <div id= "meal">
       </div>
-      <div class = "meal-details">
+      </div>
+    <div class = "meal-details">
         <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn">
-          <i class = "fas fa-times"></i>
+            <i class = "fas fa-times"></i>
         </button>
-
         <div class = "meal-details-content">
-   
-        </div>
+    
       </div>
     </div>
   </div>
+</div>
 <!-- Add recipe -->
-  <div id="container"></div>
+<div id="container"></div>
 
 <div class="form-content">
     <h2>Please add your recipe</h2>
@@ -96,14 +95,15 @@
         </button>
         <button id="add-recipe-button">Upload Recipe</button>
         <div id="form-data"></div>
+  </div>
 </div>
- 
-
-
+<!-- Display your recipes -->
+<div class="recipe-content">  
 
 </div>
+
   <script src = "app.js"></script>
   <script src = "script.js"></script>
-  <!-- <script src="add.js"></script> -->
+  <script src="server.js"></script>
 </body>
 </html>

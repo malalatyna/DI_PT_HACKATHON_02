@@ -1,13 +1,11 @@
- // Retrieve the necessary elements
+
 const searchBtn = document.getElementById('search-btn');
 const mealList = document.getElementById('meal');
 const mealDetailsContent = document.querySelector('.meal-details-content');
 const recipeCloseBtn = document.getElementById('recipe-close-btn');
-//form-add-recipe
 const addRecipesLink = document.getElementById('addRecipesLink');
 const formElement = document.querySelector('.form-content');
 const formCloseBtn = document.getElementById('form-close-btn');
-//upload recipe
 const addRecipesButton = document.getElementById('add-recipe-button');
 const formDataElement = document.getElementById('form-data');
 
@@ -71,9 +69,13 @@ function mealRecipeModal(meal) {
     </div>
     <div class="recipe-link">
     <a href="${mealItem.strYoutube}" target="_blank"><i class="fab fa-youtube"></i></i></a>
+  
   </div>
        <div class="recipe-instruct">
-      <h3>Instructions:</h3>
+        <h3>Instructions:</h3>
+        <button class="fav-btn">
+        <i class="fas fa-heart"></i>
+       </button>
       <p>${mealItem.strInstructions}</p>
     </div>
   `;
@@ -85,6 +87,7 @@ function mealRecipeModal(meal) {
 function closeRecipeModal() {
   mealDetailsContent.parentElement.classList.remove('showRecipe');
 }
+
 
  // Add an event listener to the "Add Recipes" link
  addRecipesLink.addEventListener('click', function(event) {
@@ -103,21 +106,18 @@ function closeRecipeModal() {
 addRecipesButton.addEventListener('click', function(event) {
   event.preventDefault();
 
-  // Retrieve the form inputs
   const nameInput = document.getElementById('name');
   const titleInput = document.getElementById('title');
   const ingredientsInput = document.getElementById('ingredients');
   const contactInput = document.getElementById('contact');
   const descriptionInput = document.getElementById('description');
 
-  // Get the values of the form inputs
   const name = nameInput.value;
   const title = titleInput.value;
   const ingredients = ingredientsInput.value;
   const contact = contactInput.value;
   const description = descriptionInput.value;
 
-  // Display the form data below the form
   const formDataHTML = `
     <h3>Your recipe details:</h3>
     <p><strong>Name:</strong> ${name}</p>
@@ -129,10 +129,50 @@ addRecipesButton.addEventListener('click', function(event) {
 
   formDataElement.innerHTML = formDataHTML;
 
-  // Clear the form inputs
   nameInput.value = '';
   titleInput.value = '';
   ingredientsInput.value = '';
   contactInput.value = '';
   descriptionInput.value = '';
 });
+
+// to handle the form submission and send to the server
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('recipe-form');
+  const formDataDiv = document.getElementById('form-data');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const title = document.getElementById('title').value;
+    const ingredients = document.getElementById('ingredients').value;
+    const contact = document.getElementById('contact').value;
+    const description = document.getElementById('description').value;
+
+ 
+    fetch('http://localhost:3000/recipes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        title,
+        ingredients,
+        contact,
+        description,
+      }),
+    })
+      .then((res) => res.text())
+      .then((message) => {
+        formDataDiv.innerHTML = `<p>${message}</p>`;
+        form.reset();
+      })
+      .catch((error) => {
+        console.log(error);
+        formDataDiv.innerHTML = '<p>Error submitting recipe.</p>';
+      });
+  });
+});
+

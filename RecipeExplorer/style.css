@@ -5,12 +5,14 @@
     margin: 0px;
     padding: 0px;
   }
+
   body {
     background: #c89f0d; 
     background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); 
     background: linear-gradient(to right, #FFFFFF, #FFEFBA); 
     font-family: 'Poppins',sans-serif;
   }
+
   nav {
     background: #BA8B02;
     color: rgb(255, 255, 255);
@@ -18,10 +20,12 @@
     align-items: center;
     justify-content: space-between;
   }
+
   nav .mainMenu {
     display: flex;
     list-style: none;
   }
+
   nav .mainMenu li a {
     display: inline-block;
     padding: 15px;
@@ -30,16 +34,19 @@
     font-size: 18px;
     transition: 0.2s ease;
   }
+
   nav .mainMenu li a:hover {
     color: rgb(46, 14, 14);
     text-decoration:underline;
   }
+
   nav .openMenu {
     font-size: 32px; 
     margin: 20px;
     display: none;
     cursor: pointer;
   }
+
   nav .mainMenu .closeMenu,
   .icons i {
     font-size: 32px;
@@ -252,6 +259,20 @@
     color: whitesmoke;
 }
 
+
+.recipe-instruct h3 {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .recipe-instruct .fav-btn {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 24px;
+
+  }
+  
+
 .recipe-instruct{
     padding:18px 0;
     text-align: justify;
@@ -315,10 +336,10 @@
     }
 }
 
+/* Form content */
 .form-content {
-    display: none; /* Hide the form by default */
+    display: none; 
   }
-
 
 .form-content{
     background-color: #ffffff;
@@ -385,7 +406,10 @@ input:focus{
 button{
     border: none;
     padding: 10px 20px;
-   background-color: #BA8B02;
+    background-color: #BA8B02;
     color: #ffffff;
     border-radius: 3px;
 } 
+
+
+
